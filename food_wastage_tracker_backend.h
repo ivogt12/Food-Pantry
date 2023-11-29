@@ -9,7 +9,7 @@
 // A class to represent the Food wastage tracker backend. This class receives
 // and returns CROW framework compatible objects. So when you are implementing
 // your own classes to represent concepts like food wastage record and food
-// wastage report etc, you'll have to comvert those objects to/from CROW
+// wastage report etc, you'll have to convert those objects to/from CROW
 // objects. Some helper functions have been provided in
 // food_wastage_tracker_backend.cc to help you with that conversion.
 class FoodWastageTrackerBackend {
@@ -52,5 +52,8 @@ class FoodWastageTrackerBackend {
   // A top level class object to track the food wastage.
   // TODO: Add a FoodWastageTracker object as a member here. Make sure you stick
   // to the Google's style guide while naming your variable.
+
+  FoodWastageTracker foodWastageTracker;
+
 };
 #endif
