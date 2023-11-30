@@ -1,6 +1,7 @@
 #ifndef FOOD_WASTAGE_TRACKER_H_
 #define FOOD_WASTAGE_TRACKER_H_
 
+#include <algorithm> //find
 #include <vector>
 
 #include "food_wastage_report.h"
@@ -24,11 +25,9 @@ class FoodWastageTracker {
   // ===============================================================
 
   public:
-    bool AddRecord( const FoodWastageRecord &record ) {
-      food_wastage_records_.push_back( record );
-    }
+    bool AddRecord( const FoodWastageRecord &record );
     
-    bool DeleteRecord( const FoodWastageRecord &record ) {}
+    // bool DeleteRecord( const FoodWastageRecord &record ) {}
     
     const std::vector<FoodWastageRecord> &GetRecords() const { return food_wastage_records_; }
     

@@ -19,3 +19,26 @@
 // to tell the compiler that each function belongs to the FoodWastageTracker
 // class.
 // ===================================================================
+
+bool FoodWastageTracker::AddRecord( const FoodWastageRecord &record ) {
+    for ( const auto & rec : food_wastage_records_ ) {
+        if ( rec.Date() == record.Date() ) {
+            if ( rec.Meal() == record.Meal() ) {
+                if ( rec.FoodName() == record.FoodName() ) {
+                    if ( rec.QuantityInOz() == record.QuantityInOz() ) {
+                        if ( rec.WastageReason() == record.WastageReason() ) {
+                            if ( rec.DisposalMechanism() == record.DisposalMechanism() ) {
+                                if ( rec.Cost() == record.Cost() ) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    food_wastage_records_.push_back( record );
+    return true;
+}

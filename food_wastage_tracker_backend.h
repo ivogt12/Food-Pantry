@@ -53,7 +53,7 @@ class FoodWastageTrackerBackend {
   // TODO: Add a FoodWastageTracker object as a member here. Make sure you stick
   // to the Google's style guide while naming your variable.
 
-  FoodWastageTracker foodWastageTracker;
+  FoodWastageTracker f;
 
 };
 #endif
