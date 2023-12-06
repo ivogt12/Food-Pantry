@@ -56,7 +56,7 @@ TEST(FoodWastageTrackerBackend, GetReportSingleRecord) {
   ASSERT_TRUE(jsonContains(strategiesJson, kCookSmallerServingsT))
       << "Food wastage report should suggest cooking smaller servings.";
   ASSERT_TRUE(jsonContains(strategiesJson, kRecycleLeftOversT))
-      << "Food wastage report should suggest recycling lefotvers.";
+      << "Food wastage report should suggest recycling leftovers.";
   ASSERT_TRUE(jsonListLength(strategiesJson) == 3)
       << "Food wastage report should suggest 3 strategies";
 }
@@ -127,7 +127,7 @@ TEST(FoodWastageTrackerBackend, GetReportMultipleRecords) {
   ASSERT_TRUE(jsonContains(strategiesJson, kCookSmallerServingsT))
       << "Food wastage report should suggest cooking smaller servings.";
   ASSERT_TRUE(jsonContains(strategiesJson, kDonateBeforeExpirationT))
-      << "Food wastage report should suggest recycling lefotvers.";
+      << "Food wastage report should suggest recycling leftovers.";
   ASSERT_TRUE(jsonListLength(strategiesJson) == 3)
       << "Food wastage report should suggest 3 strategies";
 }

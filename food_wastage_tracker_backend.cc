@@ -397,15 +397,7 @@ bool FoodWastageTrackerBackend::WriteRecordsToJSONFile() const {
   // declared above. Also change the data type of the records vector to `const
   // std::vector<FoodWastageRecord>&`.
 
-  const std::vector<FoodWastageRecord> & records ( f.GetRecords() );
-
-
-  // for ( auto record : f.GetRecords() ) {
-  //   records.push_back( record );
-  // }
-
-
-  // const std::vector<FoodWastageRecord> & records;
+  const std::vector<FoodWastageRecord> & records = f.GetRecords();
 
   for (FoodWastageRecord record : records) {
     SerializeFoodWastageRecordToJSON(record, &writer);
@@ -473,7 +465,7 @@ crow::json::wvalue FoodWastageTrackerBackend::GetFoodWastageReport() const {
   // member object that you added in food_wastage_tracker.h, that generates a
   // FoodWastageReport object using all the FoodWastageRecords and returns it.
   // Store the returned value in the `generated_report` object declared above.
-  FoodWastageReport generated_report(f.GetFoodWastageReport());
+  FoodWastageReport generated_report = f.GetFoodWastageReport();
 
   return FoodWastageReportToCrowJSON(generated_report);
 }

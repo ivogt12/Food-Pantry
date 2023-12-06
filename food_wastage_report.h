@@ -24,38 +24,36 @@ class FoodWastageReport {
   // Remember that std::string is an object!
   // ===============================================================
 
-  public:
-    FoodWastageReport( const std::vector<FoodWastageRecord> &food_wastage_records ) : food_wastage_records_(food_wastage_records) {}
-    
-    std::vector<std::string> MostCommonlyWastedFoods() const { return most_commonly_wasted_foods_; }
-    
-    std::vector<std::string> MostCostlyWasteProducingMeals() const { return most_costly_waste_producing_meals_; }
-    
-    double TotalCostOfFoodWasted() const { return total_cost_of_food_wasted_; }
-    
-    std::vector<std::string> MostCommonWastageReasons() const { return most_common_wastage_reasons_; }
-    
-    std::vector<std::string> MostCommonDisposalMechanisms() const { return most_common_disposal_mechanisms_; }
-    
-    std::vector<std::string> SuggestWasteReductionStrategies() const { return suggested_strategies_to_reduce_waste_; }
+ public:
+  FoodWastageReport(const std::vector<FoodWastageRecord> &food_wastage_records)
+      : food_wastage_records_(food_wastage_records) {}
 
+  std::vector<std::string> MostCommonlyWastedFoods() const;
 
-  private:
-    
-    const std::vector<FoodWastageRecord> &food_wastage_records_;
-    
-    std::vector<std::string> most_commonly_wasted_foods_;
-    
-    std::vector<std::string> most_costly_waste_producing_meals_;
-    
-    double total_cost_of_food_wasted_;
-    
-    std::vector<std::string> most_common_wastage_reasons_;
-    
-    std::vector<std::string> most_common_disposal_mechanisms_;
-    
-    std::vector<std::string> suggested_strategies_to_reduce_waste_;
+  std::vector<std::string> MostCostlyWasteProducingMeals() const;
 
+  double TotalCostOfFoodWasted() const;
+
+  std::vector<std::string> MostCommonWastageReasons() const;
+
+  std::vector<std::string> MostCommonDisposalMechanisms() const;
+
+  std::vector<std::string> SuggestWasteReductionStrategies() const;
+
+ private:
+  std::vector<FoodWastageRecord> food_wastage_records_;
+
+  std::vector<std::string> most_commonly_wasted_foods_;
+
+  std::vector<std::string> most_costly_waste_producing_meals_;
+
+  double total_cost_of_food_wasted_;
+
+  std::vector<std::string> most_common_wastage_reasons_;
+
+  std::vector<std::string> most_common_disposal_mechanisms_;
+
+  std::vector<std::string> suggested_strategies_to_reduce_waste_;
 };
 
 #endif
