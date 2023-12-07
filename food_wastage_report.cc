@@ -28,17 +28,19 @@ std::vector<std::string> FoodWastageReport::MostCommonlyWastedFoods() const {
 
     std::map<std::string, int> name_repetitions;
     std::vector<std::string> names;
+    //adds each food and its frequency into map
     for ( auto recs : food_wastage_records_ ) {
         name_repetitions[recs.FoodName()]++;
     }
     
     auto max_value = 0;
-    for ( auto i = name_repetitions.begin(); i != name_repetitions.end(); ++i ) {
-        if ( i->second >= max_value) {
-            max_value = i->second;
+    //checks for highest occuring frequency in map
+    for ( auto &name_repetition : name_repetitions ) {
+        if ( name_repetition.second >= max_value) {
+            max_value = name_repetition.second;
         }
     }
-
+    //checks for foods with same frequency
     for ( const auto & pair : name_repetitions ) {
         if ( pair.second == max_value ) {
             names.push_back(pair.first);
@@ -49,17 +51,17 @@ std::vector<std::string> FoodWastageReport::MostCommonlyWastedFoods() const {
     std::vector<std::string> FoodWastageReport::MostCostlyWasteProducingMeals() const {
         std::vector<std::string> records;
         std::map<std::string, int> meals;
-        // {{"B", 0}, {"L", 0}, {"D", 0}};
+        //adds up the cost for each meal
         for ( const auto & record : food_wastage_records_ ) {
             meals[record.Meal()] += record.Cost();
         }
 
         int highest_cost = 0;
-        
+        //finds highest cost and assigns to var
         for ( const auto & meal : meals ) {
             if ( meal.second >= highest_cost ) highest_cost = meal.second;
         }
-
+        //finds meals with same cost
         for ( const auto & pair : meals) {
             if ( pair.second == highest_cost ) records.push_back(pair.first);
         }
@@ -68,6 +70,7 @@ std::vector<std::string> FoodWastageReport::MostCommonlyWastedFoods() const {
     }
     
     double FoodWastageReport::TotalCostOfFoodWasted() const { 
+        //accumulates total costs into var
         double total = 0;
         for ( const auto & record : food_wastage_records_ ) {
             total += record.Cost();
@@ -78,17 +81,17 @@ std::vector<std::string> FoodWastageReport::MostCommonlyWastedFoods() const {
     std::vector<std::string> FoodWastageReport::MostCommonWastageReasons() const { 
         std::vector<std::string> records;
         std::map<std::string, int> wastage_reasons;
-
+        //adds reason and freq into map
         for ( const auto & record : food_wastage_records_ ) {
             wastage_reasons[record.WastageReason()]++;
         }
 
         int most_common_wastage = 0;
-
+        //finds highest freq and assigns to var
         for ( const auto & reason : wastage_reasons ) {
             if ( reason.second >= most_common_wastage ) most_common_wastage = reason.second;
         }
-
+        //finds reasons with same freq
         for ( const auto & pair : wastage_reasons) {
             if ( pair.second == most_common_wastage ) records.push_back( pair.first );
         }
@@ -99,17 +102,17 @@ std::vector<std::string> FoodWastageReport::MostCommonlyWastedFoods() const {
     std::vector<std::string> FoodWastageReport::MostCommonDisposalMechanisms() const { 
         std::vector<std::string> records;
         std::map<std::string, int> disposal_mechanisms;
-
+        //adds mechanism and freq to map
         for ( const auto & record : food_wastage_records_ ) {
             disposal_mechanisms[record.DisposalMechanism()]++;
         }
 
         int most_common_disposal = 0;
-
+        //finds highest occurring freq
         for ( const auto & mech : disposal_mechanisms ) {
             if ( mech.second >= most_common_disposal ) most_common_disposal = mech.second;
         }
-
+        //finds mechanisms with same freq
         for ( const auto & pair : disposal_mechanisms) {
             if ( pair.second == most_common_disposal ) records.push_back( pair.first );
         }
@@ -120,26 +123,27 @@ std::vector<std::string> FoodWastageReport::MostCommonlyWastedFoods() const {
     std::vector<std::string> FoodWastageReport::SuggestWasteReductionStrategies() const { 
         std::vector<std::string> final;
         std::map<std::string, int> strategies;
+        //used to check if expired is a most common wastage reason
+        bool expired = false;
         for ( const auto & reason : MostCommonWastageReasons() ) {
-            std::cout << reason << "\n";
             if ( reason == "Expired" ) {
-                strategies["Donate before expiration"];
+                strategies["Donate before expiration"]++;
+                expired = true;
             }
-
             else if ( reason == "Tastes bad" ) {
                 strategies["Buy less food"]++;
-                strategies["Recycle left overs"]++;
             }
 
             else if ( reason == "Too much left overs" ) {
                 strategies["Cook small servings"]++;
                 strategies["Buy less food"]++;
-                strategies["Recycle left overs"]++;
             }
         }
+        //if the reasons aren't empty and expired isn't added
+        if ( !MostCommonWastageReasons().empty() && !expired ) strategies["Recycle left overs"]++;
+
         for ( const auto & s : strategies ) {
             final.push_back(s.first);
-            std::cout << s.first << "\n";
         } 
 
         return final;
