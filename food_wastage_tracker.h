@@ -27,7 +27,7 @@ class FoodWastageTracker {
   public:
     bool AddRecord( const FoodWastageRecord &record );
     
-    // bool DeleteRecord( const FoodWastageRecord &record ) {}
+    bool DeleteRecord( const FoodWastageRecord &record );
     
     const std::vector<FoodWastageRecord> &GetRecords() const { return food_wastage_records_; }
     

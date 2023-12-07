@@ -437,6 +437,8 @@ crow::json::wvalue FoodWastageTrackerBackend::DeleteRecord(
   // `record` and returns the status of the delete operation as a bool. Store
   // the returned value in the bool declared above.
 
+  delete_result = f.DeleteRecord( record );
+
   status["success"] = delete_result;
   return status;
 }
